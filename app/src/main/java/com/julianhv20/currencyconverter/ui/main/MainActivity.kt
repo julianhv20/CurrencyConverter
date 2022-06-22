@@ -2,10 +2,8 @@ package com.julianhv20.currencyconverter.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.julianhv20.currencyconverter.R
 import com.julianhv20.currencyconverter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,20 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
-        val currencies = resources.getStringArray(R.array.currency_list)
-        val adapter = ArrayAdapter(this, R.layout.list_item, currencies)
 
-        with(mainBinding.autoCompleteTextView) {
-            setAdapter(adapter)
-        }
-        with(mainBinding.autoCompleteTextView1) {
-            setAdapter(adapter)
-        }
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         mainViewModel.currency.observe(this) { curr ->
             mainBinding.tvResult.text = curr
+
 
         }
 
@@ -48,8 +39,8 @@ class MainActivity : AppCompatActivity() {
 
 
             btnConvert.setOnClickListener {
-                val to = autoCompleteTextView.text.toString()
-                val inn=autoCompleteTextView1.text.toString()
+                val to = mainBinding.spinner3.selectedItem.toString()
+                val inn=mainBinding.spinner1.selectedItem.toString()
                 val amount = etNumber.text.toString()
                 mainViewModel.convertCurrency(to,inn, amount)
             }
