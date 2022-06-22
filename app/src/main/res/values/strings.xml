@@ -6,6 +6,7 @@
     <string name="convert_to">Convert to:</string>
     <string name="currency">Currency</string>
     <string name="convert">Convert</string>
+    <string name="_0">0</string>
 
     <string-array name="currency_list">
         <item>USD</item>
